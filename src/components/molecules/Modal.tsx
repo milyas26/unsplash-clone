@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 
 interface ModalInterface {
   isOpen: boolean;
@@ -46,12 +47,25 @@ const Modal = ({ isOpen, setModal, children, title }: ModalInterface) => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="w-full max-w-6xl transform overflow-hidden rounded-2xl bg-white p-4 text-left align-middle shadow-xl transition-all">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
-                >
-                  {title}
-                </Dialog.Title>
+                <div className="flex items-center justify-between">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
+                  >
+                    {title}
+                  </Dialog.Title>
+                  <button
+                    className="p-2 bg-gray-50 text-gray-900 rounded-full"
+                    onClick={() =>
+                      setModal({
+                        isOpen: false,
+                        data: {},
+                      })
+                    }
+                  >
+                    <AiOutlineClose className="text-xl" />
+                  </button>
+                </div>
                 <div className="mt-2">{children}</div>
               </Dialog.Panel>
             </Transition.Child>
